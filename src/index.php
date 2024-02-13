@@ -11,7 +11,20 @@
 
 <body>
 
-  <header style="background-color: #000; height: 50px;"><a href="" style="color: #0ff2f2; font-size: 2rem;">Hero Association</a></header>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.php">HOME</a>
+    <a href="#">DUEL</a>
+    <a href="#">LEADERBOARD</a>
+    <a href="#">LOGIN</a>
+    <a href="#">REGISTER</a>
+  </div>
+
+  <header style="background-color: #000; height: 50px;">
+    <span onclick="openNav()"><img src="images/" alt="logo">
+    <a style="color: #0ff2f2; font-size: 2rem;">Hero Association</a>
+    </span>
+  </header>
 
   <section class="cyberpunk">
     <h1 class="cyberpunk glitched">Character Dex</h1>
@@ -77,6 +90,7 @@
 
   <footer style="background-color: #000; height: 50px;"></footer>
 
+  <script src="javascript/main.js"></script>
 </body>
 
 </html>
