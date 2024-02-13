@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $prep->execute();
 
-    $register = true;
+    header("Location: signup.php");
 }
 
 ?>
@@ -68,9 +68,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
-
-<?php
-
-require_once('prg.php');
-
-?>

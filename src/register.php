@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     session_start();
     $_SESSION['HeroID'] = $pdo->lastInsertId();
-    header("Location: backstory.php?id={$id}");
+    header("Location: backstory.php");
     die();
 }
 ?>
