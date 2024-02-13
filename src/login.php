@@ -11,8 +11,8 @@ if (isset($_SESSION['user_id'])) {
 }
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username']; // Corrected to lowercase
-    $password = $_POST['password']; // Corrected to lowercase
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     $query_login = "SELECT AdminID, Password FROM Accounts WHERE Username = ?";
     $stmt_login = $pdo->prepare($query_login);
@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
     $user = $stmt_login->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['Password'])) {
-        $_SESSION['user_id'] = $user['AdminID']; // Assuming AdminID is the user ID
+        $_SESSION['user_id'] = $user['AdminID'];
         header("Location: index.php");
         exit();
     } else {

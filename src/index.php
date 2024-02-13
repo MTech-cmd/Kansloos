@@ -14,10 +14,10 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.php">HOME</a>
-    <a href="#">DUEL</a>
-    <a href="#">LEADERBOARD</a>
-    <a href="#">LOGIN</a>
-    <a href="#">REGISTER</a>
+    <a href="duel.php">DUEL</a>
+    <a href="leaderboard.php">LEADERBOARD</a>
+    <a href="login.php">LOGIN</a>
+    <a href="register.php">REGISTER</a>
   </div>
 
   <header style="background-color: #000; height: 50px;">
