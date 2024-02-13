@@ -4,13 +4,10 @@ require_once('lemmino.php');
 require_once('connector.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
     $query = "SELECT * FROM Accounts WHERE Username = :username AND Password = :password";
     $prep = $pdo->prepare($query);
-    $prep->bindParam('username', $username);
-    $prep->bindParam('password', $password);
+    $prep->bindParam('username', $_POST['username']);
+    $prep->bindParam('password', $_POST['password']);
     $prep->execute();
     $res = $prep->fetch();
     

@@ -12,7 +12,7 @@ CREATE TABLE `Profile` (
     BirthDate DATE,
     StartDate DATE NOT NULL,
     PrimaryEmail VARCHAR(50),
-    PhoneNumber VARCHAR(20),
+    PhoneNumber VARCHAR(30),
     EmergencyContact VARCHAR(50),
     ELO INT,
     Rank ENUM('S', 'A', 'B', 'C') NOT NULL
@@ -22,6 +22,13 @@ CREATE TABLE `Backstory` (
     HeroID INT PRIMARY KEY,
     OriginStory VARCHAR(300),
     Motivation VARCHAR(150),
+    FOREIGN KEY (HeroID) REFERENCES Profile(HeroID)
+);
+
+CREATE TABLE `Powers` (
+    HeroID INT PRIMARY KEY,
+    PrimaryPower VARCHAR(50),
+    Info TEXT,
     FOREIGN KEY (HeroID) REFERENCES Profile(HeroID)
 );
 
