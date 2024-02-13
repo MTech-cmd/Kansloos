@@ -1,12 +1,13 @@
 :root {
     --glitched-duration: 0.9s;
     --glitched-long-duration: 3s;
-    --yellow-color: #f9f002;
-    --yellow-color-opacity: #f9f00242;
+    --blue-color: #f9f002;
+    --blue-color-opacity: #f9f00242;
     --orange-color: #ff9800;
     --border-color: #8ae66e;
     --red-color: #ff003c;
     --blue-color: #0c5f74;
+    --turqoise-color: #0ff2f2;
     --green-color: #298d29;
     --purple-color: purple;
     --neon-color: #39ff14;
@@ -21,7 +22,7 @@
   }
   
   body {
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     padding: 0px;
     margin: 0px;
     font-size: 20px;
@@ -54,19 +55,9 @@
       border-bottom: 24px solid var(--black-color);
       padding: 5px;
       clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
-      background-color: var(--yellow-color);
+      background-color: var(--blue-color);
       font-size: 1.2rem;
       position: relative;
-  }
-
-  p.cyberpunk.inverse,
-  .cyberpunk p.inverse {
-      border: none;
-      padding: 40px 15px 30px;
-      clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
-      background-color: var(--black-color);
-      color: var(--yellow-color);
-      border-right: 3px solid var(--border-color);
   }
 
   p.cyberpunk:before,
@@ -79,24 +70,18 @@
       padding: 2px 2px 0px 2px;
       font-size: 0.6rem;
       line-height: 0.6rem;
-      color: var(--black-color);
-      background-color: var(--yellow-color);
+      color: var(--blue-color);
+      background-color: var(--blue-color);
       border-left: 2px solid var(--border-color);
   }
 
-  p.cyberpunk.inverse:before,
-  .cyberpunk p.inverse:before {
-      content: "T-71";
-      right: 90px;
-      bottom: 9px;
-  }
 
   section.cyberpunk.black p.cyberpunk.inverse:before,
   section.cyberpunk.black p.cyberpunk:before,
   section.cyberpunk.black p.inverse:before,
   section.cyberpunk.black p:before {
       background-color: var(--black-color);
-      color: var(--yellow-color);
+      color: var(--blue-color);
   }
 
   p.cyberpunk:hover:before,
@@ -166,6 +151,7 @@
       animation-duration: calc(var(--glitched-duration) * 1.4);
       animation-iteration-count: infinite;
       animation-timing-function: linear;
+      font-weight: bold;
   }
 
   h2.cyberpunk.glitched,
@@ -395,7 +381,7 @@
 
   /* Section */
   section.cyberpunk {
-      background-color: var(--yellow-color);
+      background-color: var(--blue-color);
       color: var(--black-color);
       padding: 60px 60px;
       position: relative;
@@ -435,12 +421,12 @@
   }
 
   section.cyberpunk.black:after {
-      background-color: var(--yellow-color);
+      background-color: var(--blue-color);
   }
 
   section.cyberpunk.black {
       background-color: var(--black-color);
-      color: var(--yellow-color);
+      color: var(--turqoise-color);
   }
 
   section.cyberpunk:before,
@@ -451,7 +437,7 @@
       left: 0px;
       width: 100%;
       height: 30px;
-      background-color: var(--yellow-color);
+      background-color: var(--blue-color);
       position: absolute;
       clip-path: polygon(calc(22% + 28px) -1px,
               calc(22% + 45px) 15px,
@@ -485,32 +471,47 @@
 
   section.cyberpunk.black h1,
   section.cyberpunk.black h2 {
-      color: var(--yellow-color);
+      color: var(--turqoise-color);
   }
 
   section.cyberpunk.black h1:before,
   section.cyberpunk.black h2:before {
-      background-color: var(--yellow-color);
+      background-color: var(--turqoise-color);
   }
 
   section.cyberpunk.black img.cyberpunk,
   section.cyberpunk.black img {
-      background-color: var(--yellow-color);
+      background-color: var(--turqoise-color);
   }
 
   section.cyberpunk.black p.cyberpunk,
   section.cyberpunk.black p {
-      border: 30px solid var(--yellow-color);
-      border-right: 5px solid var(--yellow-color);
-      border-left: 5px solid var(--yellow-color);
-      border-bottom: 24px solid var(--yellow-color);
+      border: 30px solid var(--turqoise-color);
+      border-right: 5px solid var(--turqoise-color);
+      border-left: 5px solid var(--turqoise-color);
+      border-bottom: 24px solid var(--turqoise-color);
       background-color: var(--black-color);
   }
 
   section.cyberpunk.black p.cyberpunk.inverse,
   section.cyberpunk.black p.inverse {
       border: none;
-      background-color: var(--yellow-color);
+      background-color: var(--turqoise-color);
       color: var(--black-color);
       border-right: 2px solid var(--border-color);
   }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .column {
+    flex: 15%;
+    padding: 0 15px;
+  }
+  
+  .center {
+    justify-content: center;
+  }
+  
