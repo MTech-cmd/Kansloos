@@ -5,17 +5,17 @@ CREATE DATABASE `AssociationDB`;
 USE `AssociationDB`;
 
 CREATE TABLE `Profile` (
-    HeroID INT AUTO_INCREMENT PRIMARY KEY,
+    HeroID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    HeroAlias VARCHAR(50),
+    Alias VARCHAR(50),
     BirthDate DATE,
     StartDate DATE NOT NULL,
     PrimaryEmail VARCHAR(50),
     PhoneNumber VARCHAR(20),
     EmergencyContact VARCHAR(50),
     ELO INT,
-    Rank ENUM('S', 'A', 'B', 'C')
+    Rank ENUM('S', 'A', 'B', 'C') NOT NULL
 );
 
 CREATE TABLE `Backstory` (
@@ -43,10 +43,9 @@ CREATE TABLE `Admins` (
 CREATE TABLE `Accounts` (
     AdminID INT,
     HeroID INT,
-    UserName VARCHAR(50),
-    Password VARCHAR(100),
-    RecoveryEmail VARCHAR(50),
-    AdminRights BOOLEAN,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Password VARCHAR(100) NOT NULL,
+    RecoveryEmail VARCHAR(50) NOT NULL,
     FOREIGN KEY (AdminID) REFERENCES Admins(AdminID),
     FOREIGN KEY (HeroID) REFERENCES Profile(HeroID)
 );

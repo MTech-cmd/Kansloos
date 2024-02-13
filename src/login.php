@@ -1,3 +1,30 @@
+<?php
+
+require_once('lemmino.php');
+require_once('connector.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM Accounts WHERE Username = :username AND Password = :password";
+    $prep = $pdo->prepare($query);
+    $prep->bindParam('username', $username);
+    $prep->bindParam('password', $password);
+    $prep->execute();
+    $res = $prep->fetch();
+    
+    if ($res) {
+        session_start();
+        $_SESSION['AdminID'] = $res['AdminID'] ?? '';
+        $_SESSION['HeroID'] = $res['HeroID'] ?? '';
+    } else {
+        $fail = true;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +37,25 @@
 
 <body>
     <form action="login.php" method="POST">
+
         <label for="username">Username:</label>
+        <input type="text" name="username">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+
+        <input type="submit" value="Log in">
     </form>
+
+    <?php if ($fail) { ?>
+        <div>Incorrect username or password</div>
+    <?php } ?>
 </body>
 
 </html>
+
+<?php
+
+require_once('deconnector.php');
+
+?>
