@@ -1,6 +1,6 @@
 <?php
 
-// Verander waarbij nodig
+// Change where needed
 $servername = "localhost";
 $port;
 $username = "bit_academy";

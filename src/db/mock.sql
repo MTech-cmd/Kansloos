@@ -4,11 +4,7 @@ INSERT INTO `Admins` (FirstName, LastName) VALUES
 ('Felix', 'Huel'),
 ('Mehdi', 'El Khallouki');
 
-INSERT INTO `Profile` (FirstName, Alias, StartDate) VALUES
-('Saitama', 'One Punch Man', '2024-02-03');
-
 INSERT INTO `Accounts` (AdminID, Username, Password, RecoveryEmail) VALUES
-(2, 'root', 'password', 'mehdiek03@gmail.com');
+(1, 'admin', '$2y$10$1Yr1qomL0H7rZQOeNNIQc.PMeBE7rMJCW.Qn24zQJptXKAU0smvwq', 'felix.huel6@gmail.com'),
+(2, 'root', '$2y$10$CG2woYxSQ5nwS4ih/yHDqe4WSFsun2D3bie8DPL2ckO0c1ptQKlee', 'mehdiek03@gmail.com');
 
-INSERT INTO `Accounts` (HeroID, Username, Password, RecoveryEmail) VALUES
-(1, 'hero', 'password', 'mehdiek@outlook.com');

@@ -3,20 +3,28 @@
 require_once('lemmino.php');
 require_once('connector.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $query = "SELECT * FROM Accounts WHERE Username = :username AND Password = :password";
-    $prep = $pdo->prepare($query);
-    $prep->bindParam('username', $_POST['username']);
-    $prep->bindParam('password', $_POST['password']);
-    $prep->execute();
-    $res = $prep->fetch();
-    
-    if ($res) {
-        session_start();
-        $_SESSION['AdminID'] = $res['AdminID'] ?? '';
-        $_SESSION['HeroID'] = $res['HeroID'] ?? '';
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
+if (isset($_POST['login'])) {
+    $username = $_POST['username']; // Corrected to lowercase
+    $password = $_POST['password']; // Corrected to lowercase
+
+    $query_login = "SELECT AdminID, Password FROM Accounts WHERE Username = ?";
+    $stmt_login = $pdo->prepare($query_login);
+    $stmt_login->execute([$username]);
+    $user = $stmt_login->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['Password'])) {
+        $_SESSION['user_id'] = $user['AdminID']; // Assuming AdminID is the user ID
+        header("Location: index.php");
+        exit();
     } else {
-        $fail = true;
+        $loginError = "Invalid username or password";
     }
 }
 
@@ -33,20 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form action="login.php" method="POST">
-
-        <label for="username">Username:</label>
-        <input type="text" name="username">
-
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-
-        <input type="submit" value="Log in">
+    <form method="post" class="form">
+        <h1>Login</h1>
+        <?php if (isset($loginError)) echo '<p style="color: red;">' . $loginError . '</p>'; ?>
+        <label for="username" class="label">Username:</label>
+        <input type="text" name="username" placeholder="Username" class="input" required>
+        <label for="password" class="label">Password:</label>
+        <input type="password" name="password" placeholder="Password" class="input" required>
+        <input type="submit" value="LOGIN" name="login" class="button">
     </form>
-
-    <?php if ($fail) { ?>
-        <div>Incorrect username or password</div>
-    <?php } ?>
 </body>
 
 </html>
