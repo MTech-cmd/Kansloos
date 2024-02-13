@@ -8,7 +8,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (:id, :story, :motivation)";
 
     $params = array('id' => $_SESSION['HeroID'],
-                    'story' => $_POST['story'])
+                    'story' => $_POST['story'],
+                    'motivation' => $_POST['motivation']);
+    
+    $prep = $pdo->prepare($query);
+    foreach ($params as $k => $v) {
+        $prep->bindParam($k, $v);
+    }
+    $prep->execute();
+
+    $query = "INSERT INTO Powers (HeroID, PrimaryPower, Info) VALUES
+    (:id, :power, :info)";
+
+    $params = array('id' => $_SESSION['HeroID'],
+                    'story' => $_POST['story'],
+                    'motivation' => $_POST['motivation']);
+    
+    $prep = $pdo->prepare($query);
+    foreach ($params as $k => $v) {
+        $prep->bindParam($k, $v);
+    }
+    $prep->execute();
+
+    $register = true;
 }
 
 ?>
@@ -26,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <h1>Tell us about yourself</h1>
-    <form action="#" method="POST">
+    <form action="backstory.php" method="POST">
 
         <label for="story">Your Origin Story:</label>
         <textarea name="story" maxlength="300"></textarea>
@@ -46,3 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+
+<?php
+
+require_once('prg.php');
+
+?>
