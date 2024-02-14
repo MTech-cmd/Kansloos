@@ -3,9 +3,11 @@
 require_once('lemmino.php');
 require_once('connector.php');
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "INSERT INTO Accounts (HeroID, Username, Password, RecoveryEmail) VALUES
-    (:id, :username, :password, :email";
+    (:id, :username, :password, :email)";
 
     $params = array('id' => $_SESSION['HeroID'],
                     'username' => $_POST['username'],
