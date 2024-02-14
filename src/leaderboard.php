@@ -68,7 +68,7 @@ try {
                 } elseif ($i === 2) {
                     $placeImage = 'images/place-3.png';
                 }
-            ?>
+                ?>
                 <div class="player-card<?php echo $i === 0 ? ' active' : ''; ?>" id="player_<?php echo $i; ?>">
                     <div class="row">
                         <div class="column">
@@ -96,7 +96,7 @@ try {
                         </div>
                     </div>
                 </div>
-            <?php
+                <?php
             }
             ?>
             <div class="navigation-buttons">
