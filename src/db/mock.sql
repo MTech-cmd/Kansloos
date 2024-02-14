@@ -9,4 +9,4 @@ INSERT INTO `Accounts` (AdminID, Username, Password, RecoveryEmail) VALUES
 (2, 'root', '$2y$10$CG2woYxSQ5nwS4ih/yHDqe4WSFsun2D3bie8DPL2ckO0c1ptQKlee', 'mehdiek03@gmail.com');
 
 INSERT INTO `Profile` (FirstName, LastName, Alias, BirthDate, StartDate, PrimaryEmail, PhoneNumber, EmergencyContact, ELO, Rank) VALUES
-('Saitama', '', 'Caped Baldy', '', '', '
+('Saitama', '', 'Caped Baldy', '1999-02-07', '2015-10-04', 'saitama@gmail.com', '0612345678', '', '', 'A'); 
