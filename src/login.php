@@ -14,13 +14,14 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query_login = "SELECT AdminID, Password FROM Accounts WHERE Username = ?";
+    $query_login = "SELECT AdminID, HeroID, Password FROM Accounts WHERE Username = ?";
     $stmt_login = $pdo->prepare($query_login);
     $stmt_login->execute([$username]);
     $user = $stmt_login->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['Password'])) {
-        $_SESSION['user_id'] = $user['AdminID'];
+        $_SESSION['AdminID'] = $user['AdminID'] ?? null;
+        $_SESSION['HeroID'] = $user['HeroID'] ?? null;
         header("Location: index.php");
         exit();
     } else {
@@ -53,7 +54,9 @@ if (isset($_POST['login'])) {
 
     <section class="cyberpunk black both">
         <form method="post" class="form">
-            <?php if (isset($loginError)) echo '<p style="color: red;">' . $loginError . '</p>'; ?>
+            <?php if (isset($loginError)) {
+                echo '<p style="color: red;">' . $loginError . '</p>';
+            } ?>
             <label for="username" class="cyberpunk">Username:</label>
             <input type="text" name="username" placeholder="Username" class="cyberpunk" required>
             <br>
