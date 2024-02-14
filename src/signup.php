@@ -5,20 +5,27 @@ require_once('connector.php');
 
 session_start();
 
+function sendToDB($query, $params, $pdo)
+{
+    $prep = $pdo->prepare($query);
+    foreach ($params as $k => &$v) {
+        $prep->bindParam($k, $v);
+    }
+    $prep->execute();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "INSERT INTO Accounts (HeroID, Username, Password, RecoveryEmail) VALUES
     (:id, :username, :password, :email)";
 
-    $params = array('id' => $_SESSION['HeroID'],
-                    'username' => $_POST['username'],
-                    'password' => $_POST['password'],
-                    'email' => $_POST['email']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $prep = $pdo->prepare($query);
-    foreach ($params as $k => $v) {
-        $prep->bindParam($k, $v);
-    }
-    $prep->execute();
+    $params = array(':id' => $_SESSION['HeroID'],
+                    ':username' => $_POST['username'],
+                    ':password' => $password,
+                    ':email' => $_POST['email']);
+        
+    sendToDB($query, $params, $pdo);
 
     header("Location: logout.php");
     die();

@@ -5,7 +5,7 @@ require_once('connector.php');
 
 session_start();
 
-$isLoggedIn = isset($_SESSION['user_id']);
+$isLoggedIn = isset($_SESSION['AdminID']) || isset($_SESSION['HeroID']);
 
 
 try {
@@ -15,6 +15,23 @@ try {
     }
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
+}
+
+if (isset($_SESSION['HeroID']) || !(isset($_GET['q']))) {
+    $query = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 10";
+    $stmt = $pdo->query($query);
+    $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($isLoggedIn) {
+        $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
+        $stmt_main = $pdo->prepare($query_main);
+        $stmt_main->execute([$_SESSION['HeroID']]);
+        $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
+    }
+} else {
+    $query = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 11";
+    $stmt = $pdo->query($query);
+    $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
@@ -55,7 +72,7 @@ try {
   </header>
 
   <section class="cyberpunk">
-    <h1 class="cyberpunk glitched">Character Dex</h1>
+    <h1 class="cyberpunk glitched">Hero Dex</h1>
   </section>
 
   <section class="cyberpunk black both">
