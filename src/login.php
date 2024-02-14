@@ -38,18 +38,42 @@ if (isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Felix Huel, Mehdi El Khallouki">
     <title>Log in</title>
+    <link rel="stylesheet" href="styling/login.css">
+    <link rel="stylesheet" href="styling/font.css">
 </head>
 
 <body>
-    <form method="post" class="form">
-        <h1>Login</h1>
-        <?php if (isset($loginError)) echo '<p style="color: red;">' . $loginError . '</p>'; ?>
-        <label for="username" class="label">Username:</label>
-        <input type="text" name="username" placeholder="Username" class="input" required>
-        <label for="password" class="label">Password:</label>
-        <input type="password" name="password" placeholder="Password" class="input" required>
-        <input type="submit" value="LOGIN" name="login" class="button">
-    </form>
+    <header style="background-color: #000; height: 50px;"><img src="images/" alt="logo">
+    </header>
+
+    <section class="cyberpunk">
+        <h1 class="cyberpunk glitched">Log In</h1>
+
+    </section>
+
+    <section class="cyberpunk black both">
+        <form method="post" class="form">
+            <?php if (isset($loginError)) echo '<p style="color: red;">' . $loginError . '</p>'; ?>
+            <label for="username" class="cyberpunk">Username:</label>
+            <input type="text" name="username" placeholder="Username" class="cyberpunk" required>
+            <br>
+            <br>
+            <br>
+            <label for="password" class="cyberpunk">Password:</label>
+            <input type="password" name="password" placeholder="Password" class="cyberpunk" required>
+            <br>
+            <br>
+            <div class="container">
+                <button type="submit" value="LOGIN" name="login" class="cyberpunk blue">
+                    LOGIN
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <footer style="background-color: #000; height: 170px;"></footer>
+
+
 </body>
 
 </html>
