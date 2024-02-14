@@ -35,17 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h1>Be sure to create an account! This way you have access to the Hero Association interface</h1>
+    <h1>Be sure to create an account! This way you will have access to the Hero Association interface</h1>
     <form action="signup.php" method="POST">
         
         <label for="username">Username:</label>
-        <input type="text" name="username">
+        <input type="text" name="username" required>
 
         <label for="password">Password:</label>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
 
         <label for="email">Email:</label>
-        <input type="email" name="email">
+        <input type="email" name="email" required>
 
         <input type="submit" value="Create Account">
 
