@@ -1,3 +1,25 @@
+<?php
+
+require_once('lemmino.php');
+require_once('connector.php');
+
+session_start();
+
+$isLoggedIn = isset($_SESSION['user_id']);
+
+
+try {
+
+  if (isset($_GET['logout'])) {
+    header("Location: logout.php");
+    exit();
+  }
+} catch (PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +36,19 @@
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.php">HOME</a>
-    <a href="#">DUEL</a>
-    <a href="#">LEADERBOARD</a>
-    <a href="#">LOGIN</a>
-    <a href="#">REGISTER</a>
+    <a href="duel.php">DUEL</a>
+    <a href="leaderboard.php">LEADERBOARD</a>
+    <?php if ($isLoggedIn) : ?>
+      <a href="?logout=true">LOGOUT</a>
+    <?php else : ?>
+      <a href="login.php">LOGIN</a>
+    <?php endif; ?>
+    <a href="register.php">REGISTER</a>
   </div>
 
   <header style="background-color: #000; height: 50px;">
     <span onclick="openNav()"><img src="images/" alt="logo">
-    <a style="color: #0ff2f2; font-size: 2rem;">Hero Association</a>
+      <a style="color: #0ff2f2; font-size: 2rem;">Hero Association</a>
     </span>
   </header>
 
@@ -31,7 +57,7 @@
   </section>
 
   <section class="cyberpunk black both">
-    <h1 class="cyberpunk">First Name + Last Name</h1>
+    <h1 class="cyberpunk">Name</h1>
     <h2 class="cyberpunk">Alias + Birth Date</h2>
     <h2 class="cyberpunk">ELO</h2>
 
