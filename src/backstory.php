@@ -5,34 +5,37 @@ require_once('connector.php');
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $query = "INSERT INTO Backstory (HeroID, OriginStory, Motivation) VALUES
-    (:id, :story, :motivation)";
-
-    $params = array('id' => $_SESSION['HeroID'],
-                    'story' => $_POST['story'],
-                    'motivation' => $_POST['motivation']);
-    
+function sendToDB($query, $params, $pdo)
+{
     $prep = $pdo->prepare($query);
-    foreach ($params as $k => $v) {
+    foreach ($params as $k => &$v) {
         $prep->bindParam($k, $v);
     }
     $prep->execute();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $query = "INSERT INTO Backstory (HeroID, OriginStory, Motivation) VALUES
+    (:id, :story, :motivation)";
+    
+
+    $params = array(':id' => $_SESSION['HeroID'],
+                    ':story' => $_POST['story'],
+                    'motivation' => $_POST['motivation']);
+    var_dump($_SESSION['HeroID']);
+    sendToDB($query, $params, $pdo);
 
     $query = "INSERT INTO Powers (HeroID, PrimaryPower, Info) VALUES
     (:id, :power, :info)";
 
-    $params = array('id' => $_SESSION['HeroID'],
-                    'story' => $_POST['story'],
-                    'motivation' => $_POST['motivation']);
-    
-    $prep = $pdo->prepare($query);
-    foreach ($params as $k => $v) {
-        $prep->bindParam($k, $v);
-    }
-    $prep->execute();
+    $params = array(':id' => $_SESSION['HeroID'],
+                    ':power' => $_POST['power'],
+                    ':info' => $_POST['info']);
+        
+    sendToDB($query, $params, $pdo);
 
     header("Location: signup.php");
+    die();
 }
 
 ?>
@@ -60,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="power">Your Primary Power:</label>
         <input type="text" name="power" maxlength="50">
+        
+        
 
         <label for="info">Any additional information about your powers:</label>
         <textarea name="info" maxlength="500"></textarea>
