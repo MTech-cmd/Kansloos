@@ -6,7 +6,7 @@ require_once('connector.php');
 session_start();
 
 $isLoggedIn = isset($_SESSION['AdminID']) || isset($_SESSION['HeroID']);
-
+$initial = !(isset($_SESSION['HeroID']) || isset($_GET['q']));
 
 try {
     if (isset($_GET['logout'])) {
@@ -17,21 +17,32 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-if (isset($_SESSION['HeroID']) || !(isset($_GET['q']))) {
-    $query = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 10";
+function calculateAge($birthdate)
+{
+    $currentDate = new DateTime();
+    $birthdateObj = new DateTime($birthdate);
+    return $currentDate->diff($birthdateObj)->y; 
+}
+
+if (!$initial) {
+    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 10";
     $stmt = $pdo->query($query);
     $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($isLoggedIn) {
-        $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
-        $stmt_main = $pdo->prepare($query_main);
+    $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
+    $stmt_main = $pdo->prepare($query_main);
+
+    if (isset($_GET['q'])) {
+        $stmt_main->execute([$_GET['q']]);
+    } else {
         $stmt_main->execute([$_SESSION['HeroID']]);
-        $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
     }
+      $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
 } else {
-    $query = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 11";
+    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 11";
     $stmt = $pdo->query($query);
     $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $main_hero = $heroes[0];
 }
 
 ?>
@@ -76,16 +87,16 @@ if (isset($_SESSION['HeroID']) || !(isset($_GET['q']))) {
   </section>
 
   <section class="cyberpunk black both">
-    <h1 class="cyberpunk">First Name + Last Name</h1>
-    <h2 class="cyberpunk">Alias + Birth Date</h2>
-    <h2 class="cyberpunk">ELO</h2>
+    <h1 class="cyberpunk"><?php echo "{$main_hero['FirstName']} {$main_hero['LastName']}"; ?></h1>
+    <h2 class="cyberpunk"><?php echo "{$main_hero['Alias']} " . calculateAge($main_hero['BirthDate']) . " Years old"; ?></h2>
+    <h2 class="cyberpunk"><?php echo $main_hero['ELO']; ?></h2>
 
     <div class="row">
       <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/400x500/ff00ff/fff" alt="">
+        <img class="cyberpunk" src="<?php echo $main_hero['Picture']; ?>" alt="Main Hero" style="max-height: 400px; max-width:500px;">
       </div>
       <div class="column smaller">
-        <img class="cyberpunk" src="https://dummyimage.com/150x150/ff00ff/fff" alt="">
+        <img class="cyberpunk" src="https://dummyimage.com/150x150/ff00ff/fff" alt="Rank">
       </div>
       <div class="column text">
         <p class="cyberpunk">Origin Story</p>
@@ -97,39 +108,18 @@ if (isset($_SESSION['HeroID']) || !(isset($_GET['q']))) {
 
   <section class="cyberpunk both">
     <div class="row center">
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-    </div>
-    <br>
-    <div class="row center">
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/200x300/ff00ff/fff" alt="" />
-      </div>
+      <?php for ($i = 1; $i < sizeof($heroes); $i++) { ?>
+        <div class="column">
+          <a href="index.php?q=<?php echo $heroes[$i]['HeroID']; ?>">
+            <img class="cyberpunk" src="<?php echo $heroes[$i]['Picture']; ?>" alt="<?php echo $heroes[$i]['FirstName']; ?>" style="max-height: 200px; max-width:300px;" />
+          </a>
+        </div>
+            <?php if ($i % 5 == 0) { ?>
+        </div>
+        <br>
+        <div class="row center">
+            <?php } ?>
+      <?php } ?>
     </div>
   </section>
 
