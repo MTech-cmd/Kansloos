@@ -25,19 +25,21 @@ function calculateAge($birthdate)
 }
 
 if (!$initial) {
-    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 10";
-    $stmt = $pdo->query($query);
-    $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
     $stmt_main = $pdo->prepare($query_main);
-
+  
     if (isset($_GET['q'])) {
-        $stmt_main->execute([$_GET['q']]);
+        $executeKey = $_GET['q'];
     } else {
-        $stmt_main->execute([$_SESSION['HeroID']]);
+        $executeKey = $_SESSION['HeroID'];
     }
-      $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
+    $stmt_main->execute([$executeKey]);
+    $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
+  
+    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID != ? ORDER BY RAND() LIMIT 10";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$executeKey]);
+    $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
     $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 11";
     $stmt = $pdo->query($query);
@@ -93,7 +95,7 @@ if (!$initial) {
 
     <div class="row">
       <div class="column">
-        <img class="cyberpunk" src="<?php echo $main_hero['Picture']; ?>" alt="Main Hero" style="max-height: 400px; max-width:500px;">
+        <a><img class="cyberpunk" src="<?php echo $main_hero['Picture']; ?>" alt="Main Hero" style="max-height: 400px; max-width:500px;"></a>
       </div>
       <div class="column smaller">
         <img class="cyberpunk" src="https://dummyimage.com/150x150/ff00ff/fff" alt="Rank">
@@ -108,13 +110,13 @@ if (!$initial) {
 
   <section class="cyberpunk both">
     <div class="row center">
-      <?php for ($i = 1; $i < sizeof($heroes); $i++) { ?>
+      <?php for ($i = ($initial) ? 1 : 0; $i < sizeof($heroes); $i++) { ?>
         <div class="column">
           <a href="index.php?q=<?php echo $heroes[$i]['HeroID']; ?>">
             <img class="cyberpunk" src="<?php echo $heroes[$i]['Picture']; ?>" alt="<?php echo $heroes[$i]['FirstName']; ?>" style="max-height: 200px; max-width:300px;" />
           </a>
         </div>
-            <?php if ($i % 5 == 0) { ?>
+            <?php if ($i % 5 == 0 && $i != 0) { ?>
         </div>
         <br>
         <div class="row center">
