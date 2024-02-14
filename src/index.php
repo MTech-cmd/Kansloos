@@ -59,18 +59,18 @@ try {
   </section>
 
   <section class="cyberpunk black both">
-    <h1 class="cyberpunk">Name</h1>
+    <h1 class="cyberpunk">First Name + Last Name</h1>
     <h2 class="cyberpunk">Alias + Birth Date</h2>
     <h2 class="cyberpunk">ELO</h2>
 
     <div class="row">
       <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/400x500/ff00ff/fff" alt="" />
+        <img class="cyberpunk" src="https://dummyimage.com/400x500/ff00ff/fff" alt="">
       </div>
-      <div class="column">
-        <img class="cyberpunk" src="https://dummyimage.com/120x120/ff00ff/fff" alt="" />
+      <div class="column smaller">
+        <img class="cyberpunk" src="https://dummyimage.com/150x150/ff00ff/fff" alt="">
       </div>
-      <div class="column">
+      <div class="column text">
         <p class="cyberpunk">Origin Story</p>
         <p class="cyberpunk">Motivation</p>
       </div>

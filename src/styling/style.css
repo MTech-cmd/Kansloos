@@ -1,8 +1,8 @@
 :root {
     --glitched-duration: 0.9s;
     --glitched-long-duration: 3s;
-    --yellow-color: #f9f002;
-    --yellow-color-opacity: #f9f00242;
+    --blue-color: #f9f002;
+    --blue-color-opacity: #f9f00242;
     --orange-color: #ff9800;
     --border-color: #8ae66e;
     --red-color: #ff003c;
@@ -93,7 +93,7 @@
   
   select.cyberpunk option,
   .cyberpunk select option {
-    color: var(--yellow-color);
+    color: var(--blue-color);
     background-color: var(--black-color);
   }
   
@@ -118,7 +118,7 @@
     display: block;
     width: 8px;
     height: 6px;
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     position: absolute;
     top: 2px;
     left: 2px;
@@ -153,7 +153,7 @@
     display: block;
     width: 8px;
     height: 8px;
-    border: 2px solid var(--yellow-color);
+    border: 2px solid var(--blue-color);
     border-top: 2px solid transparent;
     border-radius: 50%;
     position: absolute;
@@ -167,7 +167,7 @@
     display: block;
     width: 2px;
     height: 7px;
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     position: absolute;
     top: 3px;
     left: 9px;
@@ -193,7 +193,7 @@
   /* Scrollbar */
   
   ::-webkit-scrollbar {
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
   }
   ::-webkit-scrollbar-button {
     display: none;
@@ -319,7 +319,7 @@
     border-bottom: 24px solid var(--black-color);
     padding: 5px;
     clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
     font-size: 1.2rem;
     position: relative;
   }
@@ -330,7 +330,7 @@
     padding: 40px 15px 30px;
     clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
     background-color: var(--black-color);
-    color: var(--yellow-color);
+    color: var(--turqoise-color);
     border-right: 3px solid var(--border-color);
   }
   
@@ -344,8 +344,8 @@
     padding: 2px 2px 0px 2px;
     font-size: 0.6rem;
     line-height: 0.6rem;
-    color: var(--blue-color);
-    background-color: var(--blue-color);
+    color: var(--turqoise-color);
+    background-color: var(--turqoise-color);
     border-left: 2px solid var(--border-color);
   }
   
@@ -361,7 +361,7 @@
   section.cyberpunk.black p.inverse:before,
   section.cyberpunk.black p:before {
    background-color: var(--black-color);
-   color: var(--blue-color);
+   color: var(--turqoise-color);
   }
   
   p.cyberpunk:hover:before,
@@ -494,7 +494,7 @@
     left: calc(-1.2rem - 10px);
     width: 1.2rem;
     height: 1.2rem;
-    color:var(--yellow-color);
+    color:var(--turqoise-color);
     background-color: var(--black-color);
     font-weight: 700;
     position: absolute;
@@ -675,6 +675,7 @@
     animation-duration: calc(var(--glitched-duration) * 1.4);
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    font-weight: bold;
   }
   
   h2.cyberpunk.glitched,
@@ -929,7 +930,7 @@
     font-size: 0.6rem;
     line-height: 0.6rem;
     color: var(--black-color);
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     border-left: 2px solid var(--border-color);
   }
   
@@ -1098,7 +1099,7 @@
   
   /* Section */
   section.cyberpunk {
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     color: var(--black-color);
     padding: 60px 60px;
     position: relative;
@@ -1140,19 +1141,19 @@
   }
   
   section.cyberpunk.black:after {
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
   }
   
   section.cyberpunk.black {
     background-color: var(--black-color);
-    color: var(--yellow-color);
+    color: var(--blue-color);
   }
   
   .dotted,
   .dotted:before,
   .dotted:after {
     background: var(--black-color);
-    background-image: radial-gradient(var(--yellow-color-opacity) 1px, transparent 0);
+    background-image: radial-gradient(var(--blue-color-opacity) 1px, transparent 0);
     background-size: 5px 5px;
     background-position: -13px -3px;
   }
@@ -1160,7 +1161,7 @@
   section.cyberpunk.black .dotted,
   section.cyberpunk.black .dotted:before,
   section.cyberpunk.black .dotted:after {
-    background: var(--yellow-color);
+    background: var(--blue-color);
     background-image: radial-gradient(#00000021 1px, transparent 0);
     background-size: 5px 5px;
     background-position: -13px -3px;
@@ -1174,7 +1175,7 @@
     left: 0px;
     width: 100%;
     height: 30px;
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
     position: absolute;
     clip-path: polygon(
       calc(22% + 28px) -1px, 
@@ -1223,7 +1224,7 @@
   section.cyberpunk.black h2,
   section.cyberpunk.black h3,
   section.cyberpunk.black h4 {
-    color: var(--yellow-color);
+    color: var(--turqoise-color);
   }
   
   section.cyberpunk.black h1:before,
@@ -1231,12 +1232,12 @@
   section.cyberpunk.black h3:before,
   section.cyberpunk.black h4:before,
   section.cyberpunk.black hr {
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
   }
   
   section.cyberpunk.black img.cyberpunk,
   section.cyberpunk.black img {
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
   }
   
   section.cyberpunk.black textarea.cyberpunk,
@@ -1257,9 +1258,9 @@
   section.cyberpunk.black input[type="phone"],
   section.cyberpunk.black input[type="password"],
   section.cyberpunk.black select {
-    border-color: var(--yellow-color);
+    border-color: var(--turqoise-color);
     background-color: var(--black-color);
-    color: var(--yellow-color); 
+    color: var(--turqoise-color); 
   }
   
   section.cyberpunk.black input[type="time"]::-webkit-calendar-picker-indicator,
@@ -1269,7 +1270,7 @@
   
   section.cyberpunk.black input[type="radio"].cyberpunk,
   section.cyberpunk.black input[type="radio"] {
-    background-color: var(--yellow-color); 
+    background-color: var(--turqoise-color); 
   }
   
   section.cyberpunk.black input[type="radio"].cyberpunk:after,
@@ -1295,30 +1296,30 @@
   
   section.cyberpunk.black p.cyberpunk,
   section.cyberpunk.black p {
-    border: 30px solid var(--yellow-color);
-    border-right: 5px solid var(--yellow-color);
-    border-left: 5px solid var(--yellow-color);
-    border-bottom: 24px solid var(--yellow-color);
+    border: 30px solid var(--turqoise-color);
+    border-right: 5px solid var(--turqoise-color);
+    border-left: 5px solid var(--turqoise-color);
+    border-bottom: 24px solid var(--turqoise-color);
     background-color: var(--black-color);
   }
   
   section.cyberpunk.black p.cyberpunk.inverse,
   section.cyberpunk.black p.inverse {
     border: none;
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
     color: var(--black-color);
     border-right: 2px solid var(--border-color);
   }
   
   section.cyberpunk.black ul.cyberpunk > li:before,
   section.cyberpunk.black ul > li:before:not(ul.steps li:before) {
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
   }
   
   section.cyberpunk.black ol.cyberpunk li:before,
   section.cyberpunk.black ol > li:before {
     color: var(--black-color);
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
   }
   
   /* Aside */
@@ -1343,7 +1344,7 @@
   
   aside.cyberpunk ul li {
     display: block;
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
     border: 1px solid var(--black-color);
     border-left: 10px solid var(--black-color);
     border-bottom: 10px solid var(--black-color);
@@ -1369,7 +1370,7 @@
   }
   
   aside.cyberpunk ul li:hover a {
-    color: var(--yellow-color);
+    color: var(--turqoise-color);
   }
   
   aside.cyberpunk a:after {
@@ -1426,12 +1427,12 @@
   }
   
   .cyberpunk.black .boxtree > div {
-    color: var(--yellow-color);
-    border: var(--border-height) dashed var(--yellow-color);
+    color: var(--blue-color);
+    border: var(--border-height) dashed var(--blue-color);
   }
   
   /*.cyberpunk .boxtree > div.children0 {
-    border-bottom: var(--border-height) dashed var(--yellow-color); 
+    border-bottom: var(--border-height) dashed var(--blue-color); 
   }*/
   
   .cyberpunk .boxtree > div:after {
@@ -1446,7 +1447,7 @@
   }
   
   .cyberpunk.black .boxtree > div:after {
-    background-color: var(--yellow-color);
+    background-color: var(--blue-color);
   }
   
   .cyberpunk .boxtree > div {
@@ -1462,7 +1463,7 @@
   }
   
   .cyberpunk .boxtree > div *:before {
-    background-color: var(--blue-color);
+    background-color: var(--turqoise-color);
   }
   
   .cyberpunk .boxtree > div.resolved, 
@@ -1616,7 +1617,7 @@
   }
   
   .cyberpunk.black ul.steps li {
-    color: var(--yellow-color)
+    color: var(--turqoise-color)
   }
   
   .cyberpunk ul.steps li:last-child {
@@ -1633,7 +1634,7 @@
   .cyberpunk ul.steps li:before {
     position: absolute;
     content: counter(my-counter);
-    color: var(--yellow-color);
+    color: var(--turqoise-color);
     background-color: var(--purple-color);
     display: flex;
     width: 40px;
@@ -1658,7 +1659,7 @@
   }
   
   .cyberpunk.black ul.steps li.current:before {
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
     color: var(--black-color);
   }
   
@@ -1690,5 +1691,77 @@
   }
   
   .cyberpunk.black ul.steps li.current:after {
-    background-color: var(--yellow-color);
+    background-color: var(--turqoise-color);
   }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    display: block;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  #main {
+    transition: margin-left 0.5s;
+    padding: 20px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+    .sidenav a:hover {
+      font-size: 18px;
+    }
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 15%;
+    padding: 0 15px;
+    flex-grow: 0;
+    flex-basis: auto;
+}
+
+.column.smaller {
+    flex-basis: 180px;
+}
+
+.column.text {
+    flex-grow: 1;
+}
+
+.center {
+    justify-content: center;
+}
