@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         chmod($uploadDir, 0777);
-        
+
         if (move_uploaded_file($fileTmpName, $uploadFile)) {
             $query = "INSERT INTO Profiles (FirstName, LastName, Alias, Picture, BirthDate, StartDate, PrimaryEmail, PhoneNumber, EmergencyContact) VALUES
                 (:firstname, :lastname, :alias, :picture, :birthdate, :startdate, :email, :phone, :contact)";
@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'startdate' => $today,
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone'],
-                'contact' => $_POST['contact']);
+                'contact' => $_POST['contact']
+            );
             $prep = $pdo->prepare($query);
             foreach ($params as $k => &$v) {
                 $prep->bindParam($k, $v);
@@ -73,42 +74,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="author" content="Felix Huel, Mehdi El Khallouki">
     <title>Register</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
-    <link rel="stylesheet" href="styling/style.css">
+    <link rel="stylesheet" href="styling/form.css">
     <link rel="stylesheet" href="styling/font.css">
 </head>
 
 <body>
-    <section class="cyberpunk black">
+
+    <header style="background-color: #000; height: 50px;">
+        
+    </header>
+
+    <section class="cyberpunk">
         <form action="register.php" method="POST" enctype="multipart/form-data">
-            
+
             <label class="cyberpunk" for="firstname">First Name:</label>
             <input class="cyberpunk" type="text" name="firstname" maxlength="50">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="lastname">Last Name:</label>
             <input class="cyberpunk" type="text" name="lastname" maxlength="50">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="alias">Alias:</label>
             <input class="cyberpunk" type="text" name="alias" maxlength="50">
-
+            <br>
+            <br>
             <label class="cyberpunk" for="picture">Profile Image:</label>
             <input class="cyberpunk" type="file" name="picture">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="birthdate">Birthdate:</label>
             <input class="cyberpunk" type="date" name="birthdate" maxlength="50">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="email">Email:</label>
             <input class="cyberpunk" type="email" name="email" maxlength="50">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="phone">Phone number:</label>
             <input class="cyberpunk" type="tel" name="phone" maxlength="30">
-            
+            <br>
+            <br>
             <label class="cyberpunk" for="contact">Emergency Contact:</label>
             <input class="cyberpunk" type="text" name="contact" maxlength="50">
-            
+            <br>
+            <br>
             <input class="cyberpunk green" type="submit" value="Next">
-            
+
         </form>
     </section>
+
+    <footer style="background-color: #000; height: 50px;"></footer>
 </body>
 
 </html>
