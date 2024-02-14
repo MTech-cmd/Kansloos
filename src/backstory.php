@@ -3,6 +3,8 @@
 require_once('lemmino.php');
 require_once('connector.php');
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "INSERT INTO Backstory (HeroID, OriginStory, Motivation) VALUES
     (:id, :story, :motivation)";
