@@ -8,7 +8,7 @@ session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
 
 try {
-    $query_board = "SELECT HeroId, FirstName, Alias, Picture, ELO, `Rank` FROM Profile ORDER BY ELO DESC";
+    $query_board = "SELECT HeroId, FirstName, Alias, Picture, ELO, `Rank` FROM Profiles ORDER BY ELO DESC";
     $stmt_board = $pdo->query($query_board);
     $result_board = $stmt_board->fetchAll();
 } catch (PDOException $e) {
@@ -57,48 +57,60 @@ try {
     </section>
 
     <section class="cyberpunk black both">
-    <div class="carousel">
-        <?php
-        usort($result_board, function ($a, $b) {
-            return $b['ELO'] - $a['ELO'];
-        });
-
-        $topPlayer = $result_board[0];
-        ?>
-        <div class="player-card">
-            <div class="row">
-                <div class="column">
-                    <div class="player-image-container">
-                        <img src="<?php echo $topPlayer['Picture']; ?>" alt="<?php echo $topPlayer['FirstName']; ?>" class="player-image">
-                    </div>
-                </div>
-                <div class="column">
-                    <h2><?php echo $topPlayer['Alias']; ?></h2>
-                    <div class="player-details">
-                        <div class="row">
-                            <div class="column">
-                                <p>ELO: <?php echo $topPlayer['ELO']; ?></p>
+        <div class="carousel">
+            <?php
+            foreach ($result_board as $i => $player) {
+                $placeImage = '';
+                if ($i === 0) {
+                    $placeImage = 'images/place-1.png';
+                } elseif ($i === 1) {
+                    $placeImage = 'images/place-2.png';
+                } elseif ($i === 2) {
+                    $placeImage = 'images/place-3.png';
+                }
+            ?>
+                <div class="player-card<?php echo $i === 0 ? ' active' : ''; ?>" id="player_<?php echo $i; ?>">
+                    <div class="row">
+                        <div class="column">
+                            <div class="player-image-container">
+                                <img src="<?php echo $player['Picture'] ? $player['Picture'] : 'default.jpg'; ?>" alt="<?php echo $player['FirstName']; ?>" class="player-image">
                             </div>
-                            <div class="column">
-                                <p>Rank: <?php echo $topPlayer['Rank']; ?></p>
+                        </div>
+                        <div class="column">
+                            <h2><?php echo $player['Alias']; ?></h2>
+                            <div class="player-details">
+                                <div class="row">
+                                    <div class="column">
+                                        <?php if ($i < 3) : ?>
+                                            <img src="<?php echo $placeImage; ?>" alt="<?php echo $player['Alias'] . ' - ' . ($i + 1) . 'e plaats'; ?>" class="place-image">
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="column">
+                                        <p>ELO: <?php echo $player['ELO']; ?></p>
+                                    </div>
+                                    <div class="column">
+                                        <p>Rank: <?php echo $player['Rank']; ?></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            <?php
+            }
+            ?>
+            <div class="navigation-buttons">
+                <?php if (count($result_board) > 1) : ?>
+                    <button class="cyberpunk blue<?php echo $i === 0 ? ' hidden' : ''; ?>" onclick="showPrevious()">
+                        &lt;=
+                    </button>
+                    <button class="cyberpunk blue<?php echo $i === count($result_board) - 1 ? ' hidden' : ''; ?>" onclick="showNext()">
+                        =&gt;
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
-
-        <div class="navigation-buttons">
-            <button class="cyberpunk blue">
-                <=
-            </button>
-            <button class="cyberpunk blue">
-                =>
-            </button>
-        </div>
-    </div>
-</section>
-
+    </section>
 
     <script src="javascript/leaderboard.js"></script>
 

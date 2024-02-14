@@ -1776,3 +1776,19 @@
     width: 100%;
     height: auto;
   }
+
+.player-card {
+  display: none;
+}
+
+.player-card.active {
+  display: block;
+}
+
+.navigation-buttons {
+  text-align: center;
+}
+
+.navigation-buttons button.hidden {
+  display: none;
+}
