@@ -1,5 +1,8 @@
 <?php
 
+require_once('lemmino.php');
+require_once('connector.php');
+
 session_start();
 
 $isLoggedIn = isset($_SESSION['user_id']);
@@ -54,7 +57,7 @@ try {
   </section>
 
   <section class="cyberpunk black both">
-    <h1 class="cyberpunk">First Name + Last Name</h1>
+    <h1 class="cyberpunk">Name</h1>
     <h2 class="cyberpunk">Alias + Birth Date</h2>
     <h2 class="cyberpunk">ELO</h2>
 
