@@ -9,6 +9,7 @@ CREATE TABLE `Profile` (
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Alias VARCHAR(50),
+    Picture VARCHAR(255),
     BirthDate DATE,
     StartDate DATE NOT NULL,
     PrimaryEmail VARCHAR(50),

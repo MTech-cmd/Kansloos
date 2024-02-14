@@ -9,13 +9,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
 
 try {
-
-  if (isset($_GET['logout'])) {
-    header("Location: logout.php");
-    exit();
-  }
+    if (isset($_GET['logout'])) {
+        header("Location: logout.php");
+        exit();
+    }
 } catch (PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
+    echo "Connection failed: " . $e->getMessage();
 }
 
 ?>
@@ -26,7 +25,9 @@ try {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOME</title>
+  <meta name="author" content="Felix Huel, Mehdi El Khallouki">
+  <title>The Hero Association</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.png">
   <link rel="stylesheet" href="styling/style.css">
   <link rel="stylesheet" href="styling/font.css">
 </head>
@@ -39,17 +40,18 @@ try {
     <a href="duel.php">DUEL</a>
     <a href="leaderboard.php">LEADERBOARD</a>
     <?php if ($isLoggedIn) : ?>
-      <a href="?logout=true">LOGOUT</a>
+      <a class="cyberpunk red" href="?logout=true">LOGOUT</a>
     <?php else : ?>
-      <a href="login.php">LOGIN</a>
+      <a class="cyberpunk green" href="login.php">LOGIN</a>
+      <a class="cyberpunk blue" href="register.php">REGISTER</a>
     <?php endif; ?>
-    <a href="register.php">REGISTER</a>
   </div>
 
   <header style="background-color: #000; height: 50px;">
-    <span onclick="openNav()"><img src="images/" alt="logo">
-      <a style="color: #0ff2f2; font-size: 2rem;">Hero Association</a>
-    </span>
+    <span onclick="openNav()" style="display: flex; margin-left: 30px;">
+      <img src="images/favicon.png" alt="logo" width="40">
+      <a style="color: #0ff2f2; font-size: 2rem; margin-left: 10px;">Hero Association</a>
+  </span>
   </header>
 
   <section class="cyberpunk">
