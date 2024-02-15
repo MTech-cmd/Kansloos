@@ -27,6 +27,9 @@ function calculateAge($birthdate)
 if (!$initial) {
     $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
     $stmt_main = $pdo->prepare($query_main);
+
+    $query_backstory = "SELECT OriginStory, Motivation FROM Backstory WHERE HeroID = ?";
+    $stmt_backstory = $pdo->prepare($query_backstory);
   
     if (isset($_GET['q'])) {
         $executeKey = $_GET['q'];
@@ -35,6 +38,9 @@ if (!$initial) {
     }
     $stmt_main->execute([$executeKey]);
     $main_hero = $stmt_main->fetch(PDO::FETCH_ASSOC);
+
+    $stmt_backstory->execute([$executeKey]);
+    $backstory = $stmt_backstory->fetch(PDO::FETCH_ASSOC);
   
     $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID != ? ORDER BY RAND() LIMIT 10";
     $stmt = $pdo->prepare($query);
@@ -45,7 +51,14 @@ if (!$initial) {
     $stmt = $pdo->query($query);
     $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $main_hero = $heroes[0];
+
+    $query_backstory = "SELECT OriginStory, Motivation FROM Backstory WHERE HeroID = ?";
+    $stmt_backstory = $pdo->prepare($query_backstory);
+    $stmt_backstory->execute([$main_hero['HeroID']]);
+    $backstory = $stmt_backstory->fetch(PDO::FETCH_ASSOC);
 }
+
+
 
 ?>
 
@@ -98,11 +111,11 @@ if (!$initial) {
         <a><img class="cyberpunk" src="<?php echo $main_hero['Picture']; ?>" alt="Main Hero" style="max-height: 400px; max-width:500px;"></a>
       </div>
       <div class="column smaller">
-        <img class="cyberpunk" src="https://dummyimage.com/150x150/ff00ff/fff" alt="Rank">
+        <img class="cyberpunk" src="<?php echo "images/" . strtolower($main_hero['Rank']) . "-class.png"?>" alt="Rank">
       </div>
       <div class="column text">
-        <p class="cyberpunk">Origin Story</p>
-        <p class="cyberpunk">Motivation</p>
+        <p class="cyberpunk"><?php echo $backstory['OriginStory']; ?></p>
+        <p class="cyberpunk"><?php echo $backstory['Motivation'] ?></p>
       </div>
     </div>
 
