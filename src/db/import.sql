@@ -63,8 +63,14 @@ CREATE TABLE `Accounts` (
 
 CREATE TABLE `Que` (
     `QueID` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `HeroID` INT UNIQUE,
-    `ELO` INT,
-    FOREIGN KEY (HeroID) REFERENCES Profiles(HeroID),
-    FOREIGN KEY (ELO) REFERENCES Profiles(ELO)
+    `HeroID` INT,
+    `OppID` INT
+);
+
+CREATE TABLE `Duel` (
+    `DuelID` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `OneID` INT,
+    `TwoID` INT,
+    `OneInput` ENUM('1', '2', '3'),
+    `TwoInput` ENUM('1', '2', '3') 
 );
