@@ -15,7 +15,7 @@ CREATE TABLE Profiles (
     `PrimaryEmail` VARCHAR(50),
     `PhoneNumber` VARCHAR(30),
     `EmergencyContact` VARCHAR(50),
-    `ELO` INT,
+    `ELO` INT DEFAULT 1200,
     `Rank` ENUM('S', 'A', 'B', 'C') NOT NULL DEFAULT 'C'
 );
 
@@ -59,4 +59,12 @@ CREATE TABLE `Accounts` (
     `RecoveryEmail` VARCHAR(50) NOT NULL,
     FOREIGN KEY (AdminID) REFERENCES Admins(AdminID),
     FOREIGN KEY (HeroID) REFERENCES Profiles(HeroID)
+);
+
+CREATE TABLE `Que` (
+    `QueID` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `HeroID` INT UNIQUE,
+    `ELO` INT,
+    FOREIGN KEY (HeroID) REFERENCES Profiles(HeroID),
+    FOREIGN KEY (ELO) REFERENCES Profiles(ELO)
 );
