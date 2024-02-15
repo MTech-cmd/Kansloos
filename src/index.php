@@ -103,7 +103,7 @@ if (!$initial) {
 
   <section class="cyberpunk black both">
     <h1 class="cyberpunk"><?php echo "{$main_hero['FirstName']} {$main_hero['LastName']}"; ?></h1>
-    <h2 class="cyberpunk"><?php echo "{$main_hero['Alias']} " . calculateAge($main_hero['BirthDate']) . " Years old"; ?></h2>
+    <h2 class="cyberpunk"><?php echo "{$main_hero['Alias']} | " . calculateAge($main_hero['BirthDate']) . " Years old"; ?></h2>
     <h2 class="cyberpunk"><?php echo $main_hero['ELO']; ?></h2>
 
     <div class="row">
