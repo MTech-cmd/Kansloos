@@ -32,7 +32,7 @@ CREATE TABLE `Powers` (
     `HeroID` INT NOT NULL UNIQUE,
     `PrimaryPower` VARCHAR(50),
     `Info` TEXT,
-    `FOREIGN KEY (HeroID) REFERENCES Profiles(HeroID)
+    FOREIGN KEY (HeroID) REFERENCES Profiles(HeroID)
 );
 
 CREATE TABLE `Chronicle` (
