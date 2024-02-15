@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query_login = "SELECT AdminID, HeroID, Password FROM Accounts WHERE Username = ?";
+    $query_login = "SELECT `AdminID`, `HeroID`, Password FROM `Accounts` WHERE `Username` = ?";
     $stmt_login = $pdo->prepare($query_login);
     $stmt_login->execute([$username]);
     $user = $stmt_login->fetch(PDO::FETCH_ASSOC);

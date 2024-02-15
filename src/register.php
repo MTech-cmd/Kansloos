@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         chmod($uploadDir, 0777);
 
         if (move_uploaded_file($fileTmpName, $uploadFile)) {
-            $query = "INSERT INTO Profiles (FirstName, LastName, Alias, Picture, BirthDate, StartDate, PrimaryEmail, PhoneNumber, EmergencyContact) VALUES
+            $query = "INSERT INTO `Profiles` (`FirstName`, `LastName`, `Alias`, `Picture`, `BirthDate`, `StartDate`, `PrimaryEmail`, `PhoneNumber`, `EmergencyContact`) VALUES
                 (:firstname, :lastname, :alias, :picture, :birthdate, :startdate, :email, :phone, :contact)";
             $today = date_create()->format('Y-m-d');
             $params = array(

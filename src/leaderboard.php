@@ -8,7 +8,7 @@ session_start();
 $isLoggedIn = isset($_SESSION['user_id']);
 
 try {
-    $query_board = "SELECT HeroId, FirstName, Alias, Picture, ELO, `Rank` FROM Profiles ORDER BY ELO DESC";
+    $query_board = "SELECT `HeroId`, `FirstName`, `Alias`, `Picture`, `ELO`, `Rank` FROM `Profiles` ORDER BY `ELO` DESC";
     $stmt_board = $pdo->query($query_board);
     $result_board = $stmt_board->fetchAll();
 } catch (PDOException $e) {
