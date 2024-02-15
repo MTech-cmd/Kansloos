@@ -31,12 +31,15 @@ if (!$duel || ($duel['OneID'] != $_SESSION['HeroID'] && $duel['TwoID'] != $_SESS
 }
 
 // Game logic function to determine the outcome
-function determineOutcome($input1, $input2) {
+function determineOutcome($input1, $input2)
+{
     if ($input1 == $input2) {
         return "It's a draw!";
-    } elseif (($input1 == '1' && $input2 == '3') ||
+    } elseif (
+        ($input1 == '1' && $input2 == '3') ||
               ($input1 == '2' && $input2 == '1') ||
-              ($input1 == '3' && $input2 == '2')) {
+              ($input1 == '3' && $input2 == '2')
+    ) {
         return "You win!";
     } else {
         return "You lose!";
@@ -48,17 +51,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $playerChoice = $_POST['choice'];
     
     // Determine which input to update based on the logged-in user
-    if ($duel['OneID'] == $_SESSION['HeroID']) {
-        $updateField = 'OneInput';
-    } elseif ($duel['TwoID'] == $_SESSION['HeroID']) {
-        $updateField = 'TwoInput';
-    }
+    match ($_SESSION['HeroID']) {
+        $duel['OneID'] => $updateField = 'OneInput',
+        $duel['TwoID'] => $updateField = 'TwoInput',
+        default => throw new Exception('Invalid user in duel')
+    };
     
     $query = "UPDATE `Duel` SET `$updateField` = :choice WHERE `DuelID` = :id";
     $prep = $pdo->prepare($query);
     $prep->bindParam(':choice', $playerChoice, PDO::PARAM_STR);
     $prep->bindParam(':id', $duelID, PDO::PARAM_INT);
     $prep->execute();
+    $prep->debugDumpParams();
 
     // Redirect to prevent form resubmission on refresh
     header("Location: duel.php?d=$duelID"); // Adjusted to the correct file
@@ -91,11 +95,12 @@ if (!empty($duel['OneInput']) && !empty($duel['TwoInput'])) {
 <body>
     <h1>Rock Paper Scissors</h1>
 
-    <?php if (!empty($result)): ?>
+    <?php if (!empty($result)) : ?>
         <h2><?php echo $result; ?></h2>
         <a href="duel.php">Play Again</a> <!-- Adjusted to the correct file -->
-    <?php else: ?>
+    <?php else : ?>
         <form method="post">
+            <input type="hidden" name="DuelID" value="<?= $duelID; ?>">
             <label for="choice">Choose:</label>
             <select name="choice" id="choice">
                 <option value="1">Rock</option>
@@ -105,7 +110,7 @@ if (!empty($duel['OneInput']) && !empty($duel['TwoInput'])) {
             <button type="submit">Go!</button>
         </form>
         <p>Waiting for opponent to make a choice...</p>
-        <p><a href="duel.php?d=<?php echo $duelID; ?>">Refresh</a></p> <!-- Adjusted to the correct file -->
+        <p><a href="game.php?d=<?php echo $duelID; ?>">Refresh</a></p> <!-- Adjusted to the correct file -->
     <?php endif; ?>
 </body>
 
