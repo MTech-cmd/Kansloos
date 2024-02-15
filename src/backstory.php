@@ -71,18 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="backstory.php" method="POST">
 
             <label class="cyberpunk" for="story">Your Origin Story:</label>
-            <textarea class="cyberpunk" name="story" maxlength="300"></textarea>
+            <textarea class="cyberpunk" name="story" maxlength="300" id="story"></textarea>
 
             <label class="cyberpunk" for="motivation">Why do you want to be a hero?</label>
-            <textarea class="cyberpunk" name="motivation" maxlength="150"></textarea>
+            <textarea class="cyberpunk" name="motivation" maxlength="150" id="motivation"></textarea>
 
             <label class="cyberpunk" for="power">Your Primary Power:</label>
-            <input class="cyberpunk" type="text" name="power" maxlength="50">
+            <input class="cyberpunk" type="text" id="power" name="power" maxlength="50">
 
 
 
             <label class="cyberpunk" for="info">Any additional information about your powers:</label>
-            <textarea class="cyberpunk" name="info" maxlength="500"></textarea>
+            <textarea class="cyberpunk" name="info" maxlength="500" id="info"></textarea>
 
             <input class="cyberpunk green" type="submit" value="Register">
 
