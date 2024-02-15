@@ -15,7 +15,7 @@ function sendToDB($query, $params, $pdo)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $query = "INSERT INTO Backstory (HeroID, OriginStory, Motivation) VALUES
+    $query = "INSERT INTO `Backstory` (`HeroID`, `OriginStory`, `Motivation`) VALUES
     (:id, :story, :motivation)";
 
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var_dump($_SESSION['HeroID']);
     sendToDB($query, $params, $pdo);
 
-    $query = "INSERT INTO Powers (HeroID, PrimaryPower, Info) VALUES
+    $query = "INSERT INTO `Powers` (`HeroID`, `PrimaryPower`, `Info`) VALUES
     (:id, :power, :info)";
 
     $params = array(

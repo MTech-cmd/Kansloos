@@ -25,10 +25,10 @@ function calculateAge($birthdate)
 }
 
 if (!$initial) {
-    $query_main = "SELECT FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID = ?";
+    $query_main = "SELECT `FirstName`, `LastName`, `Alias`, `Picture`, `BirthDate`, `ELO`, `Rank` FROM `Profiles` WHERE `HeroID` = ?";
     $stmt_main = $pdo->prepare($query_main);
 
-    $query_backstory = "SELECT OriginStory, Motivation FROM Backstory WHERE HeroID = ?";
+    $query_backstory = "SELECT `OriginStory`, `Motivation` FROM `Backstory` WHERE `HeroID` = ?";
     $stmt_backstory = $pdo->prepare($query_backstory);
   
     if (isset($_GET['q'])) {
@@ -42,17 +42,17 @@ if (!$initial) {
     $stmt_backstory->execute([$executeKey]);
     $backstory = $stmt_backstory->fetch(PDO::FETCH_ASSOC);
   
-    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles WHERE HeroID != ? ORDER BY RAND() LIMIT 10";
+    $query = "SELECT `HeroID`, `FirstName`, `LastName`, `Alias`, `Picture`, `BirthDate`, `ELO`, `Rank` FROM `Profiles` WHERE `HeroID` != ? ORDER BY RAND() LIMIT 10";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$executeKey]);
     $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    $query = "SELECT HeroID, FirstName, LastName, Alias, Picture, BirthDate, ELO, Rank FROM Profiles ORDER BY RAND() LIMIT 11";
+    $query = "SELECT `HeroID`, `FirstName`, `LastName`, `Alias`, `Picture`, `BirthDate`, `ELO`, `Rank` FROM `Profiles` ORDER BY RAND() LIMIT 11";
     $stmt = $pdo->query($query);
     $heroes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $main_hero = $heroes[0];
 
-    $query_backstory = "SELECT OriginStory, Motivation FROM Backstory WHERE HeroID = ?";
+    $query_backstory = "SELECT `OriginStory`, `Motivation` FROM `Backstory` WHERE `HeroID` = ?";
     $stmt_backstory = $pdo->prepare($query_backstory);
     $stmt_backstory->execute([$main_hero['HeroID']]);
     $backstory = $stmt_backstory->fetch(PDO::FETCH_ASSOC);

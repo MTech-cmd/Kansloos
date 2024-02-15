@@ -15,7 +15,7 @@ function sendToDB($query, $params, $pdo)
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $query = "INSERT INTO Accounts (HeroID, Username, Password, RecoveryEmail) VALUES
+    $query = "INSERT INTO `Accounts` (`HeroID`, `Username`, `Password`, `RecoveryEmail`) VALUES
     (:id, :username, :password, :email)";
 
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
