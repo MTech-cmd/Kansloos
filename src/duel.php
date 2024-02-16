@@ -52,13 +52,23 @@ if ($opponents) {
 }
 
 // If no opponents in the queue, add the player to the queue
-$insertQuery = "INSERT INTO `Que` (HeroID) VALUES (:id)";
-$insertPrep = $pdo->prepare($insertQuery);
-$insertPrep->bindParam(':id', $_SESSION['HeroID'], PDO::PARAM_INT);
-$insertPrep->execute();
+
+$query = "SELECT * FROM `Que` WHERE `HeroID` = :id";
+$prep = $pdo->prepare($query);
+$prep->bindParam(':id', $_SESSION['HeroID'], PDO::PARAM_INT);
+$prep->execute();
+$existingQue = $prep->fetch(PDO::FETCH_ASSOC);
+
+if (isset($existingQue)) {
+    $insertQuery = "INSERT INTO `Que` (HeroID) VALUES (:id)";
+    $insertPrep = $pdo->prepare($insertQuery);
+    $insertPrep->bindParam(':id', $_SESSION['HeroID'], PDO::PARAM_INT);
+    $insertPrep->execute();
+}
+
 
 // Redirect to keep refreshing until a duel is initiated
-header("Refresh: 5");
+header("Refresh: 3");
 ?>
 
 <!DOCTYPE HTML>
@@ -74,12 +84,14 @@ header("Refresh: 5");
     <link rel="stylesheet" href="styling/font.css">
     <script>
         function reloadPage() { location.reload(); }
-        setInterval(reloadPage, 5000);
+        setInterval(reloadPage, 3500);
     </script>
 </head>
 
 <body>
-    You are in QUE.
+    <section class="cyberpunk">
+        <h1 class="cyberpunk">You are in que!</h1>
+    </section>
 </body>
 
 </html>

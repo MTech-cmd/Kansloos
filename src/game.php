@@ -11,7 +11,7 @@ if (!isset($_SESSION['HeroID'])) {
 }
 
 if (!isset($_GET['d'])) {
-    header("Location: duel.php"); // Adjusted to the correct file
+    header("Location: duel.php");
     die();
 }
 
@@ -26,7 +26,7 @@ $duel = $prep->fetch(PDO::FETCH_ASSOC);
 
 if (!$duel || ($duel['OneID'] != $_SESSION['HeroID'] && $duel['TwoID'] != $_SESSION['HeroID'])) {
     // The player is not part of this duel
-    header("Location: duel.php"); // Adjusted to the correct file
+    header("Location: duel.php");
     die();
 }
 
@@ -34,38 +34,37 @@ if (!$duel || ($duel['OneID'] != $_SESSION['HeroID'] && $duel['TwoID'] != $_SESS
 function determineOutcome($input1, $input2)
 {
     if ($input1 == $input2) {
-        return "It's a draw!";
+        return 0;
     } elseif (
         ($input1 == '1' && $input2 == '3') ||
-              ($input1 == '2' && $input2 == '1') ||
-              ($input1 == '3' && $input2 == '2')
+        ($input1 == '2' && $input2 == '1') ||
+        ($input1 == '3' && $input2 == '2')
     ) {
-        return "You win!";
+        return 1;
     } else {
-        return "You lose!";
+        return 2;
     }
 }
 
 // If the form is submitted, update the player's choice in the database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $playerChoice = $_POST['choice'];
-    
+
     // Determine which input to update based on the logged-in user
     match ($_SESSION['HeroID']) {
         $duel['OneID'] => $updateField = 'OneInput',
         $duel['TwoID'] => $updateField = 'TwoInput',
         default => throw new Exception('Invalid user in duel')
     };
-    
+
     $query = "UPDATE `Duel` SET `$updateField` = :choice WHERE `DuelID` = :id";
     $prep = $pdo->prepare($query);
     $prep->bindParam(':choice', $playerChoice, PDO::PARAM_STR);
     $prep->bindParam(':id', $duelID, PDO::PARAM_INT);
     $prep->execute();
-    $prep->debugDumpParams();
 
     // Redirect to prevent form resubmission on refresh
-    header("Location: duel.php?d=$duelID"); // Adjusted to the correct file
+    header("Location: wait.php");
     die();
 }
 
@@ -77,6 +76,15 @@ $duel = $prep->fetch(PDO::FETCH_ASSOC);
 if (!empty($duel['OneInput']) && !empty($duel['TwoInput'])) {
     // Determine the outcome
     $result = determineOutcome($duel['OneInput'], $duel['TwoInput']);
+
+    $query = "UPDATE `Duel` SET `Winner` = :winner WHERE `DuelID` = :id";
+    $prep = $pdo->prepare($query);
+    $prep->bindParam(':winner', $result, PDO::PARAM_INT);
+    $prep->bindParam(':id', $duelID, PDO::PARAM_INT);
+    $prep->execute();
+
+    header("Location: elo.php?d={$duelID}");
+    die();
 }
 
 ?>
@@ -93,12 +101,9 @@ if (!empty($duel['OneInput']) && !empty($duel['TwoInput'])) {
 </head>
 
 <body>
-    <h1>Rock Paper Scissors</h1>
+    <section class="cyberpunk both black">
 
-    <?php if (!empty($result)) : ?>
-        <h2><?php echo $result; ?></h2>
-        <a href="duel.php">Play Again</a> <!-- Adjusted to the correct file -->
-    <?php else : ?>
+        <h1>Rock Paper Scissors</h1>
         <form method="post">
             <input type="hidden" name="DuelID" value="<?= $duelID; ?>">
             <label for="choice">Choose:</label>
@@ -109,9 +114,7 @@ if (!empty($duel['OneInput']) && !empty($duel['TwoInput'])) {
             </select>
             <button type="submit">Go!</button>
         </form>
-        <p>Waiting for opponent to make a choice...</p>
-        <p><a href="game.php?d=<?php echo $duelID; ?>">Refresh</a></p> <!-- Adjusted to the correct file -->
-    <?php endif; ?>
+    </section>
 </body>
 
 </html>

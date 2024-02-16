@@ -72,5 +72,7 @@ CREATE TABLE `Duel` (
     `OneID` INT,
     `TwoID` INT,
     `OneInput` ENUM('1', '2', '3'),
-    `TwoInput` ENUM('1', '2', '3') 
+    `TwoInput` ENUM('1', '2', '3'),
+    `Winner` INT,
+    `Temp` INT
 );

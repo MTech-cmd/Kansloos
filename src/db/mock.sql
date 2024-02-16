@@ -1,6 +1,6 @@
 USE `AssociationDB`;
 
-INSERT INTO `admins` (`AdminID`, `FirstName`, `LastName`) VALUES
+INSERT INTO `Admins` (`AdminID`, `FirstName`, `LastName`) VALUES
 (1, 'Felix', 'Huel'),
 (2, 'Mehdi', 'El Khallouki');
 
