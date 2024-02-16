@@ -1,4 +1,10 @@
-<?php $duelid = $_GET['d']; ?>
+<?php
+
+require_once('lemmino.php');
+
+$duelid = $_GET['d']; 
+
+?>
 
 <!DOCTYPE HTML>
 <html lang="en">
