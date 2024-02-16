@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prep->execute();
 
     // Redirect to prevent form resubmission on refresh
-    header("Location: wait.php");
+    header("Location: wait.php?d={$duelID}");
     die();
 }
 

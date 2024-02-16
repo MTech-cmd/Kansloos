@@ -1,3 +1,5 @@
+<?php $duelid = $_GET['d']; ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 
