@@ -14,6 +14,7 @@
         "xdebug.php-debug",
         "xdebug.php-pack",
         "bmewburn.vscode-intelephense-client",
-        "valeryanm.vscode-phpsab"
+        "valeryanm.vscode-phpsab",
+        "joy-yu.css-snippets"
     ]
 }
