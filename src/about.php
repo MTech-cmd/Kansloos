@@ -18,6 +18,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <title>About</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="styling/style.css">
+    <link rel="stylesheet" href="styling/about.css">
     <link rel="stylesheet" href="styling/font.css">
 </head>
 
@@ -50,6 +51,20 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <section class="cyberpunk black center">
         <h1>Felix Huel</h1>
+        <article class="descriptor">
+            <p>text</p>
+            <img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="Felix Huel" width="300">
+        </article>
+        <h1>Mehdi El Khallouki</h1>
+        <article class="descriptor">
+            <p>Hi! I'm Mehdi and I'm a Full-stack Developer at the Bit Academy.
+                I've always been a tech nerd and enjoy expanding my knowledge in the world of IT! You can find my other projects at my GitHub and portfolio page!<br>
+                <a href="https://github.com/MTech-cmd"><img src="images/github.png" alt="GitHub" width="50"></a>
+                <a href="https://mtech-cmd.github.io/"><img src="images/mtech.png" alt="MTech" width="50"></a>
+                <a href="https://linkedin.com/in/mehdi-el-khallouki"><img src="images/linkedin.png" alt="LinkedIn" width="50"></a>
+            </p>
+            <img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="Mehdi El Khallouki" width="300">
+        </article>
     </section>
 
     <script src="javascript/main.js"></script>

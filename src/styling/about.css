@@ -1,0 +1,11 @@
+.descriptor {
+    color: white;
+    display: flex;
+    justify-content: space-between
+}
+
+.descriptor p {
+    flex-grow: 1;
+    margin-right: 10px;
+    font-size: xx-large;
+}
