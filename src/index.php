@@ -82,6 +82,7 @@ if (!$initial) {
     <a href="index.php">HOME</a>
     <a href="duel.php">DUEL</a>
     <a href="leaderboard.php">LEADERBOARD</a>
+    <a href="about.php">ABOUT</a>
     <?php if ($isLoggedIn) : ?>
       <a class="cyberpunk red" href="?logout=true">LOGOUT</a>
     <?php else : ?>
