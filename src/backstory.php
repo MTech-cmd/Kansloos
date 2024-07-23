@@ -53,8 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Felix Huel, Mehdi El Khallouki">
     <title>Register</title>
-    <link rel="stylesheet" href="styling/form.css">
-    <link rel="stylesheet" href="styling/backstory.css">
+    <link rel="stylesheet" href="styling/style.css">
 </head>
 
 <body>

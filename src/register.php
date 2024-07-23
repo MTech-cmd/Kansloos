@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="author" content="Felix Huel, Mehdi El Khallouki">
     <title>Register</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
-    <link rel="stylesheet" href="styling/form.css">
+    <link rel="stylesheet" href="styling/style.css">
     <link rel="stylesheet" href="styling/font.css">
 </head>
 

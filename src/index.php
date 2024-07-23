@@ -72,6 +72,7 @@ if (!$initial) {
   <title>The Hero Association</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.png">
   <link rel="stylesheet" href="styling/style.css">
+  <link rel="stylesheet" href="styling/index.css">
   <link rel="stylesheet" href="styling/font.css">
 </head>
 

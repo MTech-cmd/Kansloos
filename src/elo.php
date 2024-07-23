@@ -105,7 +105,8 @@ if ($meta['Temp'] != 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
-    <link rel="stylesheet" href="styling/game.css">
+    <link rel="stylesheet" href="styling/style.css">
+    <link rel="stylesheet" href="styling/index.css">
     <link rel="stylesheet" href="styling/font.css">
 </head>
 <body>
