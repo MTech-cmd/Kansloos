@@ -60,9 +60,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <article class="descriptor">
             <p>Hi! I'm Mehdi and I'm a Full-stack Developer at the Bit Academy.
                 I've always been a tech nerd and enjoy expanding my knowledge in the world of IT! You can find my other projects at my GitHub and portfolio page!<br>
-                <a href="https://github.com/MTech-cmd"><img src="images/github.png" alt="GitHub" width="50"></a>
-                <a href="https://mtech-cmd.github.io/"><img src="images/mtech.png" alt="MTech" width="50"></a>
-                <a href="https://linkedin.com/in/mehdi-el-khallouki"><img src="images/linkedin.png" alt="LinkedIn" width="50"></a>
+                <a href="https://github.com/MTech-cmd"><img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="GitHub" width="50"></a>
+                <a href="https://mtech-cmd.github.io/"><img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="MTech" width="50"></a>
+                <a href="https://linkedin.com/in/mehdi-el-khallouki"><img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="LinkedIn" width="50"></a>
             </p>
             <img src="https://storage.googleapis.com/pod_public/1300/182337.jpg" alt="Mehdi El Khallouki" width="300">
         </article>
