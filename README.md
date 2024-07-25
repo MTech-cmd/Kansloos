@@ -16,7 +16,8 @@
 ## Project Information 📕
 <img src="readme images/home.png" alt="Preview">
 
-This project is a website based on the anime One Punch Man. We had 3 casefiles to choose from, although we mixed them all together.
+This project is a website based on the anime One Punch Man. We had 3 casefiles to choose from, although we mixed them all together.\
+You can also find the finished product at [this link](https://herodb.mooo.com/).
 
 
 ### Built With 🔨
@@ -25,7 +26,7 @@ This project is a website based on the anime One Punch Man. We had 3 casefiles t
 - [HTML](https://en.wikipedia.org/wiki/HTML)
 - [CSS](https://en.wikipedia.org/wiki/CSS)
 - [Javascript](https://www.javascript.com/)
-
+- [Cyberpunk.css](https://github.com/gwannon/Cyberpunk-2077-theme-css)
 
 ## Getting Started 📖
 
@@ -38,7 +39,7 @@ This project is a website based on the anime One Punch Man. We had 3 casefiles t
 
 
 ### Installation
-- Clone the repo `git@git.nexed.com:felixhuel/kansloos.git`.
+- Clone the repo `https://github.com/MTech-cmd/Kansloos`.
 - First import the import.sql from the `db` folder in your phpmyadmin (or MySQL CLI), then do the same for mock.sql`.
 - Move the contents of the src folder to your server's root folder.
 
