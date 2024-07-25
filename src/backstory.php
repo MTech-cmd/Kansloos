@@ -52,8 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Felix Huel, Mehdi El Khallouki">
+    <meta name="description" content="A website we made for a Bit Academy Deep Dive about One Punch Man">
     <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="styling/style.css">
+    <link rel="stylesheet" href="styling/font.css">
 </head>
 
 <body>
